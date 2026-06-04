@@ -124,37 +124,7 @@
       pointer-events:none;
       opacity:.9;
     }
-    .stop.current.out-right:not(:last-child)::after{
-      left:50%;
-      right:auto;
-      width:calc(50% + 32px);
-      background:linear-gradient(to right, rgba(255,179,71,.98), rgba(255,179,71,.28), rgba(255,179,71,0));
-      background-size:220% 100%;
-      animation:currentRight 1.1s linear infinite;
-      opacity:1;
-      box-shadow:0 0 10px rgba(255,179,71,.28);
-    }
-    .stop.current.out-left:not(:last-child)::after{
-      right:50%;
-      left:auto;
-      width:calc(50% + 32px);
-      background:linear-gradient(to left, rgba(255,179,71,.98), rgba(255,179,71,.28), rgba(255,179,71,0));
-      background-size:220% 100%;
-      animation:currentLeft 1.1s linear infinite;
-      opacity:1;
-      box-shadow:0 0 10px rgba(255,179,71,.28);
-    }
     .stop.passed:not(:last-child)::after{opacity:.22}
-    @keyframes currentRight{
-      0%{background-position:0 0;opacity:.35}
-      45%{background-position:110% 0;opacity:1}
-      100%{background-position:220% 0;opacity:.35}
-    }
-    @keyframes currentLeft{
-      0%{background-position:220% 0;opacity:.35}
-      45%{background-position:110% 0;opacity:1}
-      100%{background-position:0 0;opacity:.35}
-    }
     .standby-marker-label{
       display:block;
       margin-top:2px;
@@ -440,9 +410,6 @@
         const stamp = timeMap[code]?.time || '';
         st.className = `stop ${state}`;
         st.dataset.code = code;
-        if (state === 'current') {
-          st.classList.add(trip.dir === '往南勢角' ? 'out-left' : 'out-right');
-        }
         st.innerHTML = `<div class="dot"></div><div class="time">${stamp}</div><div class="terminal-wrap"><div class="name">${code}</div></div>`;
         if (idx < ordered.length - 1) {
           const nextCode = ordered[idx + 1];
